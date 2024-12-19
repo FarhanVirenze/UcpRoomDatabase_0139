@@ -92,7 +92,7 @@
 
 
 <div align="center">
-  <img src="(https://github.com/user-attachments/assets/8d3150e3-57b2-4f32-a70c-fd59983dffd9)" alt="ValidasiInputDosen">
+  <img src="https://github.com/user-attachments/assets/8d3150e3-57b2-4f32-a70c-fd59983dffd9" alt="ValidasiInputDosen">
 </div>
 
 
@@ -100,7 +100,7 @@
 
 
 <div align="center">
-  <img src="(https://github.com/user-attachments/assets/4213fbdc-6093-4afb-8b55-f941c48e0e32)" alt="ValidasiInputMatakuliah">
+  <img src="https://github.com/user-attachments/assets/4213fbdc-6093-4afb-8b55-f941c48e0e32" alt="ValidasiInputMatakuliah">
 </div>
 
 
