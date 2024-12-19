@@ -84,3 +84,19 @@
   <img src="https://github.com/user-attachments/assets/b44acf17-a010-40ae-bdcb-75a74a6c4187" alt="HomeMatakuliahViewAfterDelete">
 </div>
 
+
+<h2 align="center">Tampilan Validasi</h2>
+
+
+<p align="center">Tampilan ValidasiInputDosen</p>
+
+
+![image](https://github.com/user-attachments/assets/8d3150e3-57b2-4f32-a70c-fd59983dffd9)
+
+
+<p align="center">Tampilan ValidasiInputMatakuliah</p>
+
+
+![image](https://github.com/user-attachments/assets/4213fbdc-6093-4afb-8b55-f941c48e0e32)
+
+
