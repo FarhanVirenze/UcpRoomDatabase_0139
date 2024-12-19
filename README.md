@@ -91,12 +91,16 @@
 <p align="center">Tampilan ValidasiInputDosen</p>
 
 
-![image](https://github.com/user-attachments/assets/8d3150e3-57b2-4f32-a70c-fd59983dffd9)
+<div align="center">
+  <img src="(https://github.com/user-attachments/assets/8d3150e3-57b2-4f32-a70c-fd59983dffd9)" alt="ValidasiInputDosen">
+</div>
 
 
 <p align="center">Tampilan ValidasiInputMatakuliah</p>
 
 
-![image](https://github.com/user-attachments/assets/4213fbdc-6093-4afb-8b55-f941c48e0e32)
+<div align="center">
+  <img src="(https://github.com/user-attachments/assets/4213fbdc-6093-4afb-8b55-f941c48e0e32)" alt="ValidasiInputMatakuliah">
+</div>
 
 
