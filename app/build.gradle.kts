@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.pam.roomsiswa"
+    namespace = "com.pam.ucp_pam"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.pam.roomsiswa"
+        applicationId = "com.pam.ucp_pam"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
