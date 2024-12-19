@@ -7,23 +7,23 @@ import kotlinx.coroutines.flow.Flow
 class LocalRepositoryMatakuliah(
     private val matakuliahDao: MatakuliahDao
 ) : RepositoryMatakuliah {
-    override suspend fun insertMatakuliah(matakuliah: Matakuliah) {
+    override suspend fun insertMtk(matakuliah: Matakuliah) {
         matakuliahDao.insertMatakuliah(matakuliah)
     }
 
-    override fun getAllMatakuliah(): Flow<List<Matakuliah>> {
-        return matakuliahDao.getAllMatakuliah()
+    override fun getAllMtk(): Flow<List<Matakuliah>> {
+        return matakuliahDao.getAllMtk()
     }
 
-    override fun getMhs(kode: String): Flow<Matakuliah> {
+    override fun getMatakuliah(kode: String): Flow<Matakuliah> {
         return matakuliahDao.getMatakuliah(kode)
     }
 
-    override suspend fun deleteMatakuliah(matakuliah: Matakuliah) {
+    override suspend fun deleteMtk(matakuliah: Matakuliah) {
         matakuliahDao.deleteMatakuliah(matakuliah)
     }
 
-    override suspend fun updateMatakuliah(matakuliah: Matakuliah) {
+    override suspend fun updateMtk(matakuliah: Matakuliah) {
         matakuliahDao.updateMatakuliah(matakuliah)
     }
 }
