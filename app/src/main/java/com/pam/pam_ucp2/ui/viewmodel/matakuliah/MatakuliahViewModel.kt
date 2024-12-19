@@ -4,7 +4,6 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pam.pam_ucp2.data.entity.Matakuliah
-import com.pam.pam_ucp2.repository.RepositoryDosen
 import com.pam.pam_ucp2.repository.RepositoryMatakuliah
 import kotlinx.coroutines.launch
 

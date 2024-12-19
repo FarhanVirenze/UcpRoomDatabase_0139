@@ -1,9 +1,6 @@
 package com.pam.pam_ucp2.ui.view.home
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.scaleIn
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -18,6 +15,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.ui.draw.scale
 import com.pam.pam_ucp2.ui.costumwidget.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 
 @Composable
 fun HomeView(
@@ -56,14 +58,14 @@ fun HomeView(
             verticalArrangement = Arrangement.Center
         ) {
             // Buttons with animations
-            AnimatedButton(text = "Go to Dosen", onClick = onDosenClick)
-            AnimatedButton(text = "Go to Mata Kuliah", onClick = onMataKuliahClick)
+            AnimatedButton(text = "Dosen", icon = Icons.Filled.Person, onClick = onDosenClick)
+            AnimatedButton(text = "Matakuliah", icon = Icons.Filled.Edit, onClick = onMataKuliahClick)
         }
     }
 }
 
 @Composable
-fun AnimatedButton(text: String, onClick: () -> Unit) {
+fun AnimatedButton(text: String, icon: androidx.compose.ui.graphics.vector.ImageVector, onClick: () -> Unit) {
     var isPressed by remember { mutableStateOf(false) }
 
     Button(
@@ -78,13 +80,29 @@ fun AnimatedButton(text: String, onClick: () -> Unit) {
             .fillMaxWidth(0.9f) // Make button wider
             .clickable { isPressed = !isPressed }
     ) {
-        Text(
-            text = text,
-            fontSize = 25.sp, // Increase font size for bigger text
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .animateScale(isPressed) // Adding animation to text
-        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Absolute.Left,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            // Icon with increased size
+            Icon(
+                imageVector = icon,
+                contentDescription = null,
+                modifier = Modifier
+                    .padding(end = 8.dp) // Padding between icon and text
+                    .size(50.dp), // Increased icon size
+                tint = Color.White
+            )
+            // Text
+            Text(
+                text = text,
+                fontSize = 30.sp, // Increase font size for bigger text
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .animateScale(isPressed) // Adding animation to text
+            )
+        }
     }
 }
 
