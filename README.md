@@ -4,7 +4,7 @@
 
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/3c833da4-086e-4925-9783-a23c2e09e26a" alt="HomeView">
+  <img src="https://github.com/user-attachments/assets/4213fbdc-6093-4afb-8b55-f941c48e0e32" alt="HomeView">
 </div>
 
 <h2 align="center">Tampilan Dosen</h2>
@@ -14,7 +14,7 @@
 
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/1c9ae97a-2703-4934-87f3-c4a4ebcab4a9" alt="HomeDosenView">
+  <img src="https://github.com/user-attachments/assets/aa08ab1b-96e0-46a5-b7ef-367b96edbbf1" alt="HomeDosenView">
 </div>
 
 
@@ -22,7 +22,7 @@
 
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/53c0c302-8afd-4b07-b646-f76882f540ed" alt="DetailDosenView">
+  <img src="https://github.com/user-attachments/assets/13ab3c51-ab3a-4d53-9c52-7c41f4bd8e9f" alt="DetailDosenView">
 </div>
 
 
@@ -30,7 +30,7 @@
 
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/7ff24d50-e9c6-4720-9469-00a246fcc202" alt="InsertDosenView">
+  <img src="https://github.com/user-attachments/assets/e2480ef5-647b-440b-96a6-74bb3decae0f" alt="InsertDosenView">
 </div>
 
 
@@ -41,7 +41,7 @@
 
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/ea65f23e-cd42-46d6-86ee-a4541d69eca9" alt="HomeMatakuliahView">
+  <img src="https://github.com/user-attachments/assets/7681072a-6ac0-483c-b0af-6c5781d55917" alt="HomeMatakuliahView">
 </div>
 
 
@@ -49,7 +49,7 @@
 
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/f81d5bea-0543-436a-ae2a-6f00b513498e" alt="DetailMatakuliahView">
+  <img src="https://github.com/user-attachments/assets/8fc319cf-0753-4337-a675-469c8d0f46df" alt="DetailMatakuliahView">
 </div>
 
 
@@ -57,7 +57,7 @@
 
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/c4bd184c-eabf-4da6-a156-feb5e054745a" alt="InsertMatakuliahView">
+  <img src="https://github.com/user-attachments/assets/15100f37-e2c8-4f24-bc1a-fd26ad7aa383" alt="InsertMatakuliahView">
 </div>
 
 
@@ -65,7 +65,7 @@
 
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/4e1f6765-0d93-4982-bd55-d4faeafaa8ea" alt="UpdateMatakuliahView">
+  <img src="https://github.com/user-attachments/assets/6f0d00bc-17c3-4027-bf15-d93482876fe7" alt="UpdateMatakuliahView">
 </div>
 
 
@@ -73,7 +73,7 @@
 
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/dee105a9-2636-4310-9e5f-192cfb19b381" alt="DeleteMatakuliahView">
+  <img src="https://github.com/user-attachments/assets/53fcb591-d241-4d26-a9fe-4a58a4cadcc4" alt="DeleteMatakuliahView">
 </div>
 
 
@@ -81,7 +81,7 @@
 
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/b44acf17-a010-40ae-bdcb-75a74a6c4187" alt="HomeMatakuliahViewAfterDelete">
+  <img src="https://github.com/user-attachments/assets/de7f1986-299a-4638-9372-f909b639c200" alt="HomeMatakuliahViewAfterDelete">
 </div>
 
 
