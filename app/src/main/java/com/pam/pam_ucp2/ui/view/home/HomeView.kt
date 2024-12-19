@@ -38,14 +38,14 @@ fun HomeView(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(Color(0xFFF2F2F2)) // Light background for a professional look
+            .background(Color(0xFFF2F2F2)) //
     ) {
         // Include the TopAppBar at the top
         TopAppBar(
             onBack = {}, // No back action in HomeView
             showBackButton = false,
             judul = "Home",
-            backgroundColor = Color(0xFF6200EA), // Primary purple background
+            backgroundColor = Color(0xFF6200EA),
             contentColor = Color.White // White text and icon
         )
 
