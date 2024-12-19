@@ -4,7 +4,7 @@
 
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/4213fbdc-6093-4afb-8b55-f941c48e0e32" alt="HomeView">
+  <img src="https://github.com/user-attachments/assets/38eed9b4-7863-4f64-bbe9-343d6096a143" alt="HomeView">
 </div>
 
 <h2 align="center">Tampilan Dosen</h2>
