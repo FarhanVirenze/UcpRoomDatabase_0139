@@ -48,18 +48,19 @@ import kotlinx.coroutines.launch
 object DestinasiMatakuliahInsert : AlamatNavigasi {
     override val route = "matakuliahinsert"
 }
+
 @Composable
 fun InsertMatakuliahView(
-    onBack:()->Unit,
-    onNavigate:()->Unit,
+    onBack: () -> Unit,
+    onNavigate: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: MatakuliahViewModel = viewModel(factory = PenyediaMatakuliahViewModel.Factory),
     viewModelDsn: HomeDosenViewModel = viewModel(factory = PenyediaDosenViewModel.Factory),
-){
+) {
     val uiState = viewModel.uiState
-    val snackbarHostState = remember{ SnackbarHostState() }
+    val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
-    val DsnList by viewModelDsn.homeUiState.collectAsState()
+    val dsnList by viewModelDsn.homeUiState.collectAsState()
 
     LaunchedEffect(uiState.snackBarMessage) {
         uiState.snackBarMessage?.let { message ->
@@ -69,16 +70,17 @@ fun InsertMatakuliahView(
             }
         }
     }
-    Scaffold (
-        modifier=modifier,
+
+    Scaffold(
+        modifier = modifier,
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
-    ){padding ->
+    ) { padding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
                 .padding(16.dp)
-        ){
+        ) {
             TopAppBar(
                 onBack = onBack,
                 showBackButton = true,
@@ -86,8 +88,8 @@ fun InsertMatakuliahView(
             )
             InsertBodyMatakuliah(
                 uiState = uiState,
-                listDosen = DsnList,
-                onValueChange = {updatedEvent->
+                listDosen = dsnList,
+                onValueChange = { updatedEvent ->
                     viewModel.updateState(updatedEvent)
                 },
                 onClick = {
@@ -104,13 +106,13 @@ fun InsertMatakuliahView(
 @Composable
 fun InsertBodyMatakuliah(
     modifier: Modifier = Modifier,
-    onValueChange:(MatakuliahEvent)->Unit,
-    onClick:() -> Unit,
+    onValueChange: (MatakuliahEvent) -> Unit,
+    onClick: () -> Unit,
     uiState: MatakuliahUIState,
     listDosen: HomeUiState
-){
-    Column (
-        modifier= modifier.fillMaxWidth(),
+) {
+    Column(
+        modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -129,128 +131,126 @@ fun InsertBodyMatakuliah(
         }
     }
 }
-@Preview(showBackground = true)
+
 @Composable
 fun FormMatakuliah(
     matakuliahEvent: MatakuliahEvent = MatakuliahEvent(),
-    onValueChange:(MatakuliahEvent)->Unit={},
+    onValueChange: (MatakuliahEvent) -> Unit = {},
     errorState: FormErrorState = FormErrorState(),
     modifier: Modifier = Modifier,
     listDsn: List<Dosen>
-){
-    val sks = listOf("1","2","3","4","5","6")
-    val jenis = listOf("Wajib","Peminatan")
+) {
+    val sks = listOf("1", "2", "3", "4", "5", "6")
+    val jenis = listOf("Wajib", "Peminatan")
     val namaDosenList = listDsn.map { it.nama }
-    var chosenDropdown by remember { mutableStateOf("") }
 
-    Column (
+    Column(
         modifier = modifier.fillMaxWidth()
-    ){
+    ) {
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value =matakuliahEvent.kode,
+            value = matakuliahEvent.kode,
             onValueChange = {
                 onValueChange(matakuliahEvent.copy(kode = it))
             },
-            label= { Text("Kode") },
-            isError = errorState.kode !=null,
+            label = { Text("Kode") },
+            isError = errorState.kode != null,
             placeholder = { Text("Masukkan Kode") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
         Text(
-            text = errorState.kode ?:"",
+            text = errorState.kode ?: "",
             color = Color.Red
         )
-        Column (
-            modifier = modifier.fillMaxWidth()
-        ){
-            OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
-                value =matakuliahEvent.nama,
-                onValueChange = {
-                    onValueChange(matakuliahEvent.copy(nama = it))
-                },
-                label= { Text("Nama") },
-                isError = errorState.nama !=null,
-                placeholder = { Text("Masukkan Nama") },
-            )
-            Text(
-                text = errorState.nama ?:"",
-                color = Color.Red
-            )
-            Spacer(modifier= Modifier.height(16.dp))
-            Text(text ="SKS")
-            Row(
-                modifier= Modifier.fillMaxWidth()
 
-            ){
-                sks.forEach{sks ->
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Start
-                    ){
-                        RadioButton(
-                            selected = matakuliahEvent.sks == sks,
-                            onClick = {
-                                onValueChange(matakuliahEvent.copy(sks = sks))
-                            },
-                        )
-                        Text(
-                            text = sks,
-                        )
-                    }
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = matakuliahEvent.nama,
+            onValueChange = {
+                onValueChange(matakuliahEvent.copy(nama = it))
+            },
+            label = { Text("Nama") },
+            isError = errorState.nama != null,
+            placeholder = { Text("Masukkan Nama") },
+        )
+        Text(
+            text = errorState.nama ?: "",
+            color = Color.Red
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(text = "SKS")
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            sks.forEach { sksOption ->
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    RadioButton(
+                        selected = matakuliahEvent.sks == sksOption,
+                        onClick = {
+                            onValueChange(matakuliahEvent.copy(sks = sksOption))
+                        },
+                    )
+                    Text(text = sksOption)
                 }
             }
-            OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
-                value =matakuliahEvent.semester,
-                onValueChange = {
-                    onValueChange(matakuliahEvent.copy(semester = it))
-                },
-                label= { Text("Semester") },
-                isError = errorState.semester !=null,
-                placeholder = { Text("Masukkan Semester") },
-            )
-            Text(
-                text = errorState.semester ?:"",
-                color = Color.Red
-            )
-            Spacer(modifier= Modifier.height(16.dp))
-            Text(text ="Jenis")
-            Row(
-                modifier= Modifier.fillMaxWidth()
-
-            ){
-                jenis.forEach{jenis ->
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Start
-                    ){
-                        RadioButton(
-                            selected = matakuliahEvent.jenis  == jenis,
-                            onClick = {
-                                onValueChange(matakuliahEvent.copy(jenis = jenis))
-                            },
-                        )
-                        Text(
-                            text = jenis,
-                        )
-                    }
-                }
-            }
-
-            DynamicSelectedTextField(
-                selectedValue = chosenDropdown,
-                options = namaDosenList,
-                label = "Mata Kuliah",
-                onValueChangedEvent = {
-                    chosenDropdown = it
-                }
-            )
-            Text(
-                text = errorState.dosenpengampu ?:"",
-                color = Color.Red
-            )
         }
+
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = matakuliahEvent.semester,
+            onValueChange = {
+                onValueChange(matakuliahEvent.copy(semester = it))
+            },
+            label = { Text("Semester") },
+            isError = errorState.semester != null,
+            placeholder = { Text("Masukkan Semester") },
+        )
+        Text(
+            text = errorState.semester ?: "",
+            color = Color.Red
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(text = "Jenis")
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            jenis.forEach { jenisOption ->
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    RadioButton(
+                        selected = matakuliahEvent.jenis == jenisOption,
+                        onClick = {
+                            onValueChange(matakuliahEvent.copy(jenis = jenisOption))
+                        },
+                    )
+                    Text(text = jenisOption)
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(text = "Dosen Pengampu")
+        DynamicSelectedTextField(
+            selectedValue = matakuliahEvent.dosenpengampu,
+            options = namaDosenList,
+            label = "Pilih Dosen Pengampu",
+            onValueChangedEvent = {
+                onValueChange(matakuliahEvent.copy(dosenpengampu = it))
+            }
+        )
+        Text(
+            text = errorState.dosenpengampu ?: "",
+            color = Color.Red
+        )
     }
 }
