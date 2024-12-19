@@ -22,8 +22,12 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,8 +35,13 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.pam.pam_ucp2.data.entity.Dosen
+import com.pam.pam_ucp2.ui.costumwidget.DynamicSelectedTextField
 import com.pam.pam_ucp2.ui.costumwidget.TopAppBar
 import com.pam.pam_ucp2.ui.navigation.AlamatNavigasi
+import com.pam.pam_ucp2.ui.viewmodel.dosen.HomeDosenViewModel
+import com.pam.pam_ucp2.ui.viewmodel.dosen.HomeUiState
+import com.pam.pam_ucp2.ui.viewmodel.dosen.PenyediaDosenViewModel
 import com.pam.pam_ucp2.ui.viewmodel.matakuliah.PenyediaMatakuliahViewModel
 import kotlinx.coroutines.launch
 
@@ -44,11 +53,13 @@ fun InsertMatakuliahView(
     onBack:()->Unit,
     onNavigate:()->Unit,
     modifier: Modifier = Modifier,
-    viewModel: MatakuliahViewModel = viewModel(factory = PenyediaMatakuliahViewModel.Factory)
+    viewModel: MatakuliahViewModel = viewModel(factory = PenyediaMatakuliahViewModel.Factory),
+    viewModelDsn: HomeDosenViewModel = viewModel(factory = PenyediaDosenViewModel.Factory),
 ){
     val uiState = viewModel.uiState
     val snackbarHostState = remember{ SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
+    val DsnList by viewModelDsn.homeUiState.collectAsState()
 
     LaunchedEffect(uiState.snackBarMessage) {
         uiState.snackBarMessage?.let { message ->
@@ -71,11 +82,11 @@ fun InsertMatakuliahView(
             TopAppBar(
                 onBack = onBack,
                 showBackButton = true,
-                judul = "Tambah Matakuliah",
-                modifier = Modifier
+                judul = "Tambah Matakuliah"
             )
             InsertBodyMatakuliah(
                 uiState = uiState,
+                listDosen = DsnList,
                 onValueChange = {updatedEvent->
                     viewModel.updateState(updatedEvent)
                 },
@@ -95,7 +106,8 @@ fun InsertBodyMatakuliah(
     modifier: Modifier = Modifier,
     onValueChange:(MatakuliahEvent)->Unit,
     onClick:() -> Unit,
-    uiState: MatakuliahUIState
+    uiState: MatakuliahUIState,
+    listDosen: HomeUiState
 ){
     Column (
         modifier= modifier.fillMaxWidth(),
@@ -106,7 +118,8 @@ fun InsertBodyMatakuliah(
             matakuliahEvent = uiState.matakuliahEvent,
             onValueChange = onValueChange,
             errorState = uiState.isEntryValid,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            listDsn = listDosen.listDsn
         )
         Button(
             onClick = onClick,
@@ -122,10 +135,13 @@ fun FormMatakuliah(
     matakuliahEvent: MatakuliahEvent = MatakuliahEvent(),
     onValueChange:(MatakuliahEvent)->Unit={},
     errorState: FormErrorState = FormErrorState(),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    listDsn: List<Dosen>
 ){
     val sks = listOf("1","2","3","4","5","6")
     val jenis = listOf("Wajib","Peminatan")
+    val namaDosenList = listDsn.map { it.nama }
+    var chosenDropdown by remember { mutableStateOf("") }
 
     Column (
         modifier = modifier.fillMaxWidth()
@@ -222,17 +238,15 @@ fun FormMatakuliah(
                     }
                 }
             }
-            OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
-                value =matakuliahEvent.dosenpengampu,
-                onValueChange = {
-                    onValueChange(matakuliahEvent.copy(dosenpengampu = it))
-                },
-                label= { Text("DosenPengampu") },
-                isError = errorState.dosenpengampu !=null,
-                placeholder = { Text("Masukkan DosenPengampu") },
 
-                )
+            DynamicSelectedTextField(
+                selectedValue = chosenDropdown,
+                options = namaDosenList,
+                label = "Mata Kuliah",
+                onValueChangedEvent = {
+                    chosenDropdown = it
+                }
+            )
             Text(
                 text = errorState.dosenpengampu ?:"",
                 color = Color.Red
