@@ -14,8 +14,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.ui.draw.scale
+import com.pam.pam_ucp2.ui.costumwidget.TopAppBar
 
 @Composable
 fun HomeView(
@@ -23,10 +25,10 @@ fun HomeView(
     onMataKuliahClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    // State untuk kontrol animasi
+    // State for animation control
     var isVisible by remember { mutableStateOf(false) }
 
-    // Memicu animasi saat tampilan dimuat
+    // Trigger animation when the view is loaded
     LaunchedEffect(Unit) {
         isVisible = true
     }
@@ -34,27 +36,29 @@ fun HomeView(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+            .background(Color(0xFFF2F2F2)) // Light background for a professional look
     ) {
-        AnimatedVisibility(
-            visible = isVisible,
-            enter = fadeIn(animationSpec = tween(1000)) + scaleIn(initialScale = 0.8f)
+        // Include the TopAppBar at the top
+        TopAppBar(
+            onBack = {}, // No back action in HomeView
+            showBackButton = false,
+            judul = "Home",
+            backgroundColor = Color(0xFF6200EA), // Primary purple background
+            contentColor = Color.White // White text and icon
+        )
+
+        // Main content
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
-            Text(
-                text = "Home",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF6200EA) // Warna utama
-            )
+            // Buttons with animations
+            AnimatedButton(text = "Go to Dosen", onClick = onDosenClick)
+            AnimatedButton(text = "Go to Mata Kuliah", onClick = onMataKuliahClick)
         }
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        AnimatedButton(text = "Go to Dosen", onClick = onDosenClick)
-        Spacer(modifier = Modifier.height(16.dp))
-        AnimatedButton(text = "Go to Mata Kuliah", onClick = onMataKuliahClick)
     }
 }
 
@@ -65,19 +69,21 @@ fun AnimatedButton(text: String, onClick: () -> Unit) {
     Button(
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(
-            containerColor = Color(0xFF6200EA),
+            containerColor = Color(0xFF6200EA), // Matching primary purple
             contentColor = Color.White
         ),
         modifier = Modifier
-            .padding(horizontal = 16.dp)
+            .padding(horizontal = 12.dp, vertical = 12.dp) // Larger padding for a bigger button
+            .height(90.dp) // Increase button height
+            .fillMaxWidth(0.9f) // Make button wider
             .clickable { isPressed = !isPressed }
     ) {
         Text(
             text = text,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Medium,
+            fontSize = 25.sp, // Increase font size for bigger text
+            fontWeight = FontWeight.Bold,
             modifier = Modifier
-                .animateScale(isPressed) // Menambahkan animasi pada teks
+                .animateScale(isPressed) // Adding animation to text
         )
     }
 }
